@@ -2,27 +2,36 @@
 package com.example.aibot
 
 
+import androidx.compose.material.icons.filled.ArrowBack
+
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +45,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.aibot.ui.theme.ColorModelMessage
 import com.example.aibot.ui.theme.ColorUserMessage
 //import com.example.aibot.ui.theme.ColorModelMessage
@@ -46,11 +56,11 @@ import com.example.aibot3.MessageModel
 
 @RequiresApi(35)
 @Composable
-fun ChatPage(modifier: Modifier = Modifier,viewModel: ChatViewModel) {
+fun ChatPage(modifier: Modifier = Modifier,viewModel: ChatViewModel,navController: NavController?) {
     Column(
         modifier = modifier
     ) {
-        AppHeader()
+        AppHeader(showBackButton = true, navController = navController)
         MessageList(
             modifier = Modifier.weight(1f),
             messageList = viewModel.messageList
@@ -174,18 +184,57 @@ fun MessageInput(onMessageSend : (String)-> Unit) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppHeader() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary)
+fun AppHeader(
+    showBackButton: Boolean = false,
+    navController: NavController? = null,
+    title: String = "Ai ChatBot"
+) {
+    Surface(
+        tonalElevation = 4.dp,
+        shadowElevation = 2.dp,
+        color = MaterialTheme.colorScheme.primary
     ) {
-        Text(
-            modifier = Modifier.padding(16.dp),
-            text = "Easy Bot",
-            color = Color.White,
-            fontSize = 22.sp
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (showBackButton && navController != null) {
+                    IconButton(
+                        onClick = { navController.popBackStack() },
+                        modifier = Modifier.size(24.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            tint = Color.White
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(12.dp))
+                }
+
+                Text(
+                    text = title,
+                    color = Color.White,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 20.sp
+                )
+            }
+
+            // Logo image
+            Image(
+                painter = painterResource(id = R.drawable.ai_bot2),
+                contentDescription = "App Logo",
+                modifier = Modifier
+                    .size(36.dp)
+                    .clip(RoundedCornerShape(8.dp))
+            )
+        }
     }
 }

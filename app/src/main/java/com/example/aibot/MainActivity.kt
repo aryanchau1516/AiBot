@@ -4,6 +4,8 @@ import androidx.activity.ComponentActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -24,19 +26,38 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(35)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val chatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]
         setContent {
             AiBotTheme {
-
-
-
-                        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                            ChatPage(modifier = Modifier.padding(innerPadding),chatViewModel)
-                        }
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Box(modifier = Modifier.padding(innerPadding)) {
+                        AppNavigation(chatViewModel)
                     }
                 }
             }
         }
+
+    }
+}
+/*
+@RequiresApi(35)
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+    val chatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]
+    setContent {
+        AiBotTheme {
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Box(modifier = Modifier.padding(innerPadding)) {
+                    AppNavigation(chatViewModel)
+                }
+            }
+        }
+    }
+}
+
+ */
