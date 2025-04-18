@@ -1,4 +1,4 @@
-    package com.example.aibot
+//    package com.example.aibot
 
     object Constants {
         const val apiKey = "AIzaSyCPS04vXu_Rc69ppU-QwWtOgqI6yqVZLG0"
