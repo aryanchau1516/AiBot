@@ -1,11 +1,11 @@
-package com.example.aibot
+package com.example.aibot.viewModel
 
 
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.aibot3.MessageModel
+import com.example.aibot.model.MessageModel
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
 import kotlinx.coroutines.launch

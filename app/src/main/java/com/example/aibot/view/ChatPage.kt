@@ -1,5 +1,5 @@
 
-package com.example.aibot
+package com.example.aibot.view
 
 
 import androidx.compose.material.icons.filled.ArrowBack
@@ -35,8 +35,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,19 +49,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.aibot.viewModel.ChatViewModel
+import com.example.aibot.R
 import com.example.aibot.ui.theme.ColorHeader
 import com.example.aibot.ui.theme.ColorModelMessage
 import com.example.aibot.ui.theme.ColorUserMessage
 import com.example.aibot.ui.theme.InputBackground
 //import com.example.aibot.ui.theme.ColorModelMessage
 //import com.example.aibot.ui.theme.ColorUserMessage
-import com.example.aibot.ui.theme.Purple80
-import com.example.aibot3.MessageModel
+import com.example.aibot.model.MessageModel
 
 
 @RequiresApi(35)
 @Composable
-fun ChatPage(modifier: Modifier = Modifier,viewModel: ChatViewModel,navController: NavController?) {
+fun ChatPage(modifier: Modifier = Modifier, viewModel: ChatViewModel, navController: NavController?) {
     Column(
         modifier = modifier
     ) {

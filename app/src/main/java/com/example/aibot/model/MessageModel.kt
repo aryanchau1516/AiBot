@@ -1,4 +1,4 @@
-package com.example.aibot3
+package com.example.aibot.model
 
 data class MessageModel(
     val message: String,

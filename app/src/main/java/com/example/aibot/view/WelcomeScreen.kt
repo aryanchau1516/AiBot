@@ -1,7 +1,6 @@
-package com.example.aibot
+package com.example.aibot.view
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -20,18 +19,18 @@ import com.example.aibot.R
 
 @Composable
 fun WelcomeScreen(onStartChatClicked: () -> Unit) {
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        // Fullscreen background image
-        Image(
-            painter = painterResource(id = R.drawable.welco), // Update this to your new image
-            contentDescription = "Welcome Background",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(1080.dp)
-        )
+            Box(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                // Fullscreen background image
+                Image(
+                    painter = painterResource(id = R.drawable.welcome8), // Update this to your new image
+                    contentDescription = "Welcome Background",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+
+
+                )
 
         Column(
             modifier = Modifier

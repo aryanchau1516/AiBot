@@ -1,11 +1,11 @@
-package com.example.aibot
+package com.example.aibot.view
 
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.aibot.viewModel.ChatViewModel
 
 @RequiresApi(35)
 @Composable
